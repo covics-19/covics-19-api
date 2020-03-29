@@ -10,6 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongodb_1 = require("mongodb");
+const options_1 = require("../options");
+const DB = options_1.default.mongodb.db;
+const COLLECTION = options_1.default.mongodb.collection;
 class Database {
     constructor(uri, options = {}) {
         this.connection = null;
@@ -30,10 +33,13 @@ class Database {
             }
         });
     }
-    prova() {
+    getPredictions() {
         return __awaiter(this, void 0, void 0, function* () {
-            const shit = yield this.connection.db('covics-19').collection('predictions').find().toArray();
-            console.log(JSON.stringify(shit, null, 2));
+            return this.connection
+                .db(DB)
+                .collection(COLLECTION)
+                .find()
+                .toArray();
         });
     }
     disconnect() {

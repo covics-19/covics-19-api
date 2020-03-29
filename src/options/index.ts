@@ -1,8 +1,8 @@
 export default {
-    SERVER: {
+    server: {
         port: process.env.PORT || 8080
     },
-    MONGO_DB: {
+    mongodb: {
         url: 'mongodb://localhost:8080'
     }
 };

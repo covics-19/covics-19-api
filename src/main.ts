@@ -14,3 +14,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const PORT = 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});

@@ -1,6 +1,6 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
-import { Predictions, CountryPrediction } from '../types/prediction';
+import { Predictions } from '../types/prediction';
 import options from '../options';
 
 const DB = options.mongodb.db;
@@ -41,7 +41,7 @@ export class Database {
         return lastPrediction[0];
     }
 
-    public async getCountryPrediction(country: string): Promise<CountryPrediction> {
+    public async getCountryPrediction(country: string): Promise<Predictions> {
         const lastPrediction = await this.connection
             .db(DB)
             .collection(COLLECTION)

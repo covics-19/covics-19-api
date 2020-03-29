@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Database } from '../../utils/database';
-import { parsePredictions, parseCountryPrediction } from '../../utils/parsePredictions';
+import { parsePredictions } from '../../utils/parsePredictions';
 
 export function addRoute(router: Router, database: Database): void {
 
@@ -10,9 +10,9 @@ export function addRoute(router: Router, database: Database): void {
         res.send(parsedPredictions);
     });
 
-    router.get('/predictions/:country', async (_req, res) => {
-        const predictions = await database.getLastPrediction();
-        const parsedPredictions = parsePredictions(predictions);
+    router.get('/predictions/:country', async (req, res) => {
+        const prediction = await database.getCountryPrediction(req.params.country);
+        const parsedPredictions = parsePredictions(prediction);
         res.send(parsedPredictions);
     });
     

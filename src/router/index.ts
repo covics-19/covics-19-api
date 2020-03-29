@@ -9,7 +9,7 @@ export default function(): express.Router {
     const dreeOptions: ScanOptions = { skipErrors: false, extensions: ['js'] };
     const fileCallback: Callback = function (file) {
         if (/.route.js/.test(file.name)) {
-            require(file.path)(router);
+            require(file.path).addRoute(router);
         }
     };
     scan(routesPath, dreeOptions, fileCallback);

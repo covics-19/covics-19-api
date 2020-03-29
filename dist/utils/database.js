@@ -33,13 +33,40 @@ class Database {
             }
         });
     }
-    getPredictions() {
+    getLastPrediction() {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.connection
+            const lastPrediction = yield this.connection
                 .db(DB)
                 .collection(COLLECTION)
                 .find()
+                .sort({ timestamp: 1 })
+                .limit(1)
                 .toArray();
+            return lastPrediction[0];
+        });
+    }
+    getCountryPrediction(country) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const lastPrediction = yield this.connection
+                .db(DB)
+                .collection(COLLECTION)
+                .aggregate([
+                {
+                    $project: {
+                        results: {
+                            $filter: [{
+                                    input: '$results',
+                                    cond: { $eq: ['$$this.country_code', country] }
+                                }]
+                        },
+                        timestamp: 1
+                    }
+                }
+            ])
+                .sort({ timestamp: 1 })
+                .limit(1)
+                .toArray();
+            return lastPrediction[0];
         });
     }
     disconnect() {

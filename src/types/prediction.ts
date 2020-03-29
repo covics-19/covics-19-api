@@ -10,7 +10,16 @@ export interface CountryPrediction {
     recovered_prediction_3w: number;
 }
 
-export interface Prediction {
+export interface Predictions {
     results: CountryPrediction[];
     timestap: string;
 }
+
+export interface ParsedCountryPrediction extends CountryPrediction {
+    resources_prediction_3w: number;
+}
+
+export interface ParsedPredictions {
+    results: ParsedCountryPrediction[];
+    timestamp: string;
+} 

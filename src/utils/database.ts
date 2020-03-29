@@ -30,12 +30,15 @@ export class Database {
         }
     }
 
-    public async getPredictions(): Promise<Prediction[]> {
-        return this.connection
+    public async getLastPrediction(): Promise<Prediction> {
+        const lastPrediction = await this.connection
             .db(DB)
             .collection(COLLECTION)
             .find()
+            .sort({ timestamp: 1 })
+            .limit(1)
             .toArray();
+        return lastPrediction;
     }
 
     public async disconnect(): Promise<void> {

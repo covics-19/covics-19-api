@@ -25,7 +25,7 @@ async function main() {
     
     const database = new Database(URI);
     await database.connect();
-    
+
     app.use('', router(database));
     
     app.listen(PORT, () => {

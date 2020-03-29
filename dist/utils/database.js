@@ -30,6 +30,12 @@ class Database {
             }
         });
     }
+    prova() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const shit = yield this.connection.db('covics-19').collection('predictions').find().toArray();
+            console.log(JSON.stringify(shit, null, 2));
+        });
+    }
     disconnect() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.connected) {

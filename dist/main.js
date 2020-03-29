@@ -31,6 +31,7 @@ function main() {
         app.use(bodyParser.json());
         const database = new database_1.Database(URI);
         yield database.connect();
+        yield database.prova();
         app.use('', router_1.default(database));
         app.listen(PORT, () => {
             console.log(`Server listening on port ${PORT}`);

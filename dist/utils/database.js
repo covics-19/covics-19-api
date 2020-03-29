@@ -54,10 +54,10 @@ class Database {
                 {
                     $project: {
                         results: {
-                            $filter: [{
-                                    input: '$results',
-                                    cond: { $eq: ['$$this.country_code', country] }
-                                }]
+                            $filter: {
+                                input: '$results',
+                                cond: { $eq: ['$$this.country_code', country] }
+                            }
                         },
                         timestamp: 1
                     }

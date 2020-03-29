@@ -41,6 +41,28 @@ export class Database {
         return lastPrediction;
     }
 
+    public async getCountryPrediction(country: string): Promise<Prediction> {
+        const lastPrediction = await this.connection
+            .db(DB)
+            .collection(COLLECTION)
+            .aggregate([
+                {
+                    $project: {
+                        results: {
+                            $filter: [{
+                                input: '$results',
+                                as: "result",
+                                cond: { country_code: country }
+                            }]
+                        },
+                        timestamp: 1
+                    }
+                }
+            ])
+            .toArray();
+        return lastPrediction;
+    }
+
     public async disconnect(): Promise<void> {
         if (this.connected) {
             await this.connection.close();

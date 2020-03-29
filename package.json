@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/covics-team-19/backend#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
+    "@types/helmet": "0.0.45",
+    "@types/morgan": "^1.9.0",
     "@types/node": "^13.9.5",
     "typescript": "^3.8.3"
   },

@@ -10,7 +10,7 @@ import router from './router';
 import options from './options'; 
 
 
-async function main(): void {
+async function main() {
 
     const PORT = options.server.port;
     const URI = options.mongodb.uri;

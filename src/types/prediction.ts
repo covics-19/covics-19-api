@@ -1,4 +1,4 @@
-export interface Country {
+export interface Prediction {
     country_code: string;
     country_name: string;
     resources_capacity: number;

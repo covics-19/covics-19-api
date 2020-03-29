@@ -1,5 +1,11 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
+import { Prediction } from '../types/prediction';
+import options from '../options';
+
+const DB = options.mongodb.db;
+const COLLECTION = options.mongodb.collection;
+
 export class Database {
 
     private uri: string;
@@ -22,6 +28,14 @@ export class Database {
         if (!this.connected) {
             this.connection = await MongoClient.connect(this.uri, this.options);
         }
+    }
+
+    public async getPredictions(): Promise<Prediction[]> {
+        return this.connection
+            .db(DB)
+            .collection(COLLECTION)
+            .find()
+            .toArray();
     }
 
     public async disconnect(): Promise<void> {

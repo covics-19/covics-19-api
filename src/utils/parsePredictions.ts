@@ -15,7 +15,7 @@ export function parseCountryPrediction(prediction: CountryPrediction): ParsedCou
     };
 }
 
-export function parsedPredictions(predictons: Predictions): ParsedPredictions {
+export function parsePredictions(predictons: Predictions): ParsedPredictions {
     return {
         results: predictons
             .results

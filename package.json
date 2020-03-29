@@ -1,0 +1,25 @@
+{
+  "name": "covics19-backend",
+  "version": "1.0.0",
+  "description": "The backend of covics-19",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/covics-team-19/backend.git"
+  },
+  "author": "Eugenio Vinicio Berretta <euberdeveloper@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/covics-team-19/backend/issues"
+  },
+  "homepage": "https://github.com/covics-team-19/backend#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

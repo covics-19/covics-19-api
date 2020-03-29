@@ -1,4 +1,4 @@
-export interface Prediction {
+export interface CountryPrediction {
     country_code: string;
     country_name: string;
     resources_capacity: number;
@@ -8,4 +8,9 @@ export interface Prediction {
     confirmed_prediction_3w: number;
     deaths_prediction_3w: number;
     recovered_prediction_3w: number;
+}
+
+export interface Prediction {
+    results: CountryPrediction[];
+    timestap: string;
 }

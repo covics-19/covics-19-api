@@ -49,10 +49,10 @@ export class Database {
                 {
                     $project: {
                         results: {
-                            $filter: [{
+                            $filter: {
                                 input: '$results',
                                 cond: { $eq: ['$$this.country_code', country ] }
-                            }]
+                            }
                         },
                         timestamp: 1
                     }

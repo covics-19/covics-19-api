@@ -51,7 +51,7 @@ export class Database {
                         results: {
                             $filter: [{
                                 input: '$results',
-                                cond: { '$$this.country_code': country } 
+                                cond: { $eq: ['$$this.country_code', countrysss ] }
                             }]
                         },
                         timestamp: 1
@@ -59,7 +59,7 @@ export class Database {
                 }
             ])
             .toArray();
-        return lastPrediction;
+        return lastPrediction[0];
     }
 
     public async disconnect(): Promise<void> {

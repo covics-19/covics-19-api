@@ -1,6 +1,6 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
-import { Prediction } from '../types/prediction';
+import { Predictions, CountryPrediction } from '../types/prediction';
 import options from '../options';
 
 const DB = options.mongodb.db;
@@ -30,7 +30,7 @@ export class Database {
         }
     }
 
-    public async getLastPrediction(): Promise<Prediction> {
+    public async getLastPrediction(): Promise<Predictions> {
         const lastPrediction = await this.connection
             .db(DB)
             .collection(COLLECTION)
@@ -38,10 +38,10 @@ export class Database {
             .sort({ timestamp: 1 })
             .limit(1)
             .toArray();
-        return lastPrediction;
+        return lastPrediction[0];
     }
 
-    public async getCountryPrediction(country: string): Promise<Prediction> {
+    public async getCountryPrediction(country: string): Promise<CountryPrediction> {
         const lastPrediction = await this.connection
             .db(DB)
             .collection(COLLECTION)
@@ -51,8 +51,7 @@ export class Database {
                         results: {
                             $filter: [{
                                 input: '$results',
-                                as: "result",
-                                cond: { country_code: country }
+                                cond: { '$$this.country_code': country } 
                             }]
                         },
                         timestamp: 1

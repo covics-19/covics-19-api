@@ -3,6 +3,6 @@ export default {
         port: process.env.PORT || 2323
     },
     mongodb: {
-        uri: 'mongodb://localhost:27017'
+        uri: process.env.DB_URI || 'mongodb://localhost:27017'
     }
 };

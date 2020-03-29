@@ -7,9 +7,8 @@
     "transpile": "tsc",
     "transpile:watch": "tsc-watch --onSuccess \"node dist/main\"",
     "lint": "eslint .",
-    "start:dev": "node dist/main",
-    "serve": "npm run transpile && npm run start:dev",
-    "start": "npm run serve"
+    "start": "node dist/main",
+    "serve": "npm run transpile && npm run start",
   },
   "repository": {
     "type": "git",

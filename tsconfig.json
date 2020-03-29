@@ -1,18 +1,17 @@
-
 {
-    "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
-      "outDir": "./dist"
-    },
-    "include": [
-      "./src/**/*.ts",
-      "./src/assets/**/*"
-    ],
-    "exclude": [
-      "./node_modules"
-    ],
-    "assets": [
-        "./src/assets/**/*"
-    ]
-  }
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist"
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/assets/**/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ],
+  "assets": [
+    "./src/assets/**/*"
+  ]
+}

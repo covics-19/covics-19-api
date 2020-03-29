@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const helmet = require("helmet");
+const cors = require("cors");
+const morgan = require("morgan");
+const compression = require("compression");
+const bodyParser = require("body-parser");
+const router_1 = require("./router");
+const options_1 = require("./options");
+const express = require("express");
+const app = express();
+app.use(compression());
+app.use(helmet());
+app.use(cors());
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('', router_1.default());
+const PORT = options_1.default.server.port;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});

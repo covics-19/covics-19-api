@@ -18,11 +18,15 @@ const bodyParser = require("body-parser");
 const database_1 = require("./utils/database");
 const router_1 = require("./router");
 const options_1 = require("./options");
+const httpsRedirect_1 = require("./utils/httpsRedirect");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const PORT = options_1.default.server.port;
         const URI = options_1.default.mongodb.uri;
         const app = express();
+        if (process.env.NODE_ENV === 'production') {
+            app.use(httpsRedirect_1.default);
+        }
         app.use(compression());
         app.use(helmet());
         app.use(cors());

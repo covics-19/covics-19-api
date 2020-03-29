@@ -7,8 +7,8 @@ import * as bodyParser from 'body-parser';
 
 import { Database } from './utils/database';
 import router from './router';
-import options from './options'; 
-
+import options from './options';
+import httpsRedirect from './utils/httpsRedirect';
 
 async function main() {
 
@@ -16,6 +16,10 @@ async function main() {
     const URI = options.mongodb.uri;
     const app = express();
     
+    if (process.env.NODE_ENV === 'production') {
+        app.use(httpsRedirect);
+    }
+
     app.use(compression());
     app.use(helmet());
     app.use(cors());

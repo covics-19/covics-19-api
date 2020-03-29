@@ -14,3 +14,12 @@ export function parseCountryPrediction(prediction: CountryPrediction): ParsedCou
         resources_prediction_3w
     };
 }
+
+export function parsedPredictions(predictons: Predictions): ParsedPredictions {
+    return {
+        results: predictons
+            .results
+            .map(prediction => parseCountryPrediction(prediction)),
+        timestamp: predictons.timestap
+    };
+}

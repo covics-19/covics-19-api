@@ -6,12 +6,15 @@ import {
 } from '../types/prediction';
 
 export function parseCountryPrediction(prediction: CountryPrediction): ParsedCountryPrediction {
-    const resources_prediction_3w = 
-        prediction.resources_capacity - (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / 5;
+    const resources_requirements = 
+        prediction.confirmed - prediction.deaths - prediction.recovered;
+    const resources_requirements_prediction_3w = 
+        prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w;
     
     return {
         ...prediction,
-        resources_prediction_3w
+        resources_requirements,
+        resources_requirements_prediction_3w
     };
 }
 

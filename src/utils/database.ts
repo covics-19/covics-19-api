@@ -1,7 +1,7 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
 import { Predictions } from '../types/prediction';
-import { Distributions, Distribution } from '../types/distribution';
+import { Distributions } from '../types/distribution';
 import options from '../options';
 
 const DB = options.mongodb.db;
@@ -122,20 +122,6 @@ export class Database {
             .toArray();
         return lastDistributions[0];
     }
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
 
     public async disconnect(): Promise<void> {
         if (this.connected) {

@@ -16,7 +16,8 @@ export interface Predictions {
 }
 
 export interface ParsedCountryPrediction extends CountryPrediction {
-    resources_prediction_3w: number;
+    resources_requirements: number;
+    resources_requirements_prediction_3w: number;
 }
 
 export interface ParsedPredictions {

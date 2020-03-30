@@ -1,2 +1,2 @@
 web: npm start
-clock: python clock.py
+clock: pip install -r requirements.txt && python clock.py

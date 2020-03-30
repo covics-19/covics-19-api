@@ -5,17 +5,17 @@ import {
     Predictions
 } from '../types/prediction';
 
-const BIAS = 20;
+const BIAS = 0.15;
  
 export function parseCountryPrediction(prediction: CountryPrediction): ParsedCountryPrediction {
     const resources_requirements = 
-        (prediction.confirmed - prediction.deaths - prediction.recovered) / BIAS;
+        (prediction.confirmed - prediction.deaths - prediction.recovered) * BIAS;
     const resources_requirements_prediction_3w = 
-        (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / BIAS;
+        (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) * BIAS;
     const available_resources = 
-        prediction.resources_capacity - (prediction.confirmed - prediction.deaths - prediction.recovered) / BIAS;
+        prediction.resources_capacity - resources_requirements;
     const available_resources_prediction_3w = 
-        prediction.resources_capacity - (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / BIAS;
+        prediction.resources_capacity - resources_requirements_prediction_3w;
     
     return {
         ...prediction,

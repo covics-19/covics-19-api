@@ -58,7 +58,7 @@ export class Database {
                     }
                 }
             ])
-            .sort({ timestamp: 1 })
+            .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
         return lastPrediction[0];

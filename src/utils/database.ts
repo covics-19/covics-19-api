@@ -74,6 +74,14 @@ export class Database {
             .toArray();
     }
 
+    public async getContributionsByDonor(donor: string): Promise<Contribution[]> {
+        return this.connection
+            .db(DB)
+            .collection(CONTRIBUTIONS)
+            .find({ donor })
+            .toArray();
+    }
+
     public async disconnect(): Promise<void> {
         if (this.connected) {
             await this.connection.close();

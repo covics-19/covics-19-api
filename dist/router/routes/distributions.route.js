@@ -14,5 +14,15 @@ function addRoute(router, database) {
         const distributions = yield database.getLastDistributions();
         res.send(distributions);
     }));
+    router.get('/distributions/donor/:donor', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        const donor = req.params.donor;
+        const distributions = yield database.getDistributionsByDonor(donor);
+        res.send(distributions);
+    }));
+    router.get('/distributions/recipient/:recipient', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        const recipient = req.params.recipient;
+        const distributions = yield database.getDistributionsByRecipient(recipient);
+        res.send(distributions);
+    }));
 }
 exports.addRoute = addRoute;

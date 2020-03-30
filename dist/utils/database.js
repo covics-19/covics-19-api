@@ -82,6 +82,54 @@ class Database {
             return lastDistributions[0];
         });
     }
+    getDistributionsByDonor(donor) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const lastDistributions = yield this.connection
+                .db(DB)
+                .collection(DISTRIBUTIONS)
+                .aggregate([
+                {
+                    $project: {
+                        distributions: {
+                            $filter: {
+                                input: '$distributions',
+                                cond: { $eq: ['$$this.donor', donor] }
+                            }
+                        },
+                        timestamp: 1
+                    }
+                }
+            ])
+                .sort({ timestamp: -1 })
+                .limit(1)
+                .toArray();
+            return lastDistributions[0];
+        });
+    }
+    getDistributionsByRecipient(recipient) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const lastDistributions = yield this.connection
+                .db(DB)
+                .collection(DISTRIBUTIONS)
+                .aggregate([
+                {
+                    $project: {
+                        distributions: {
+                            $filter: {
+                                input: '$distributions',
+                                cond: { $eq: ['$$this.recipient', recipient] }
+                            }
+                        },
+                        timestamp: 1
+                    }
+                }
+            ])
+                .sort({ timestamp: -1 })
+                .limit(1)
+                .toArray();
+            return lastDistributions[0];
+        });
+    }
     disconnect() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.connected) {

@@ -11,7 +11,7 @@ export function addRoute(router: Router, database: Database): void {
 
     router.get('/distributions/donor/:donor', async (req, res) => {
         const donor = req.params.donor;
-        const distributions = await database.getLastDistributions();
+        const distributions = await database.getDistributionsByDonor(donor);
         res.send(distributions);
     });
 

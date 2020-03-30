@@ -4,3 +4,8 @@ export interface Distribution {
   cost: number;
   transfer_amount: number;
 }
+
+export interface Distributions {
+  distributions: Distribution [];
+  timestamp: string;
+}

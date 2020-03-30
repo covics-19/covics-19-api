@@ -5,16 +5,24 @@ import {
     Predictions
 } from '../types/prediction';
 
+const BIAS = 20;
+
 export function parseCountryPrediction(prediction: CountryPrediction): ParsedCountryPrediction {
     const resources_requirements = 
-        prediction.confirmed - prediction.deaths - prediction.recovered;
+        (prediction.confirmed - prediction.deaths - prediction.recovered) / BIAS;
     const resources_requirements_prediction_3w = 
-        prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w;
+        (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / BIAS;
+    const available_resources = 
+        prediction.resources_capacity - (prediction.confirmed - prediction.deaths - prediction.recovered) / BIAS;
+    const available_resources_prediction_3w = 
+        prediction.resources_capacity - (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / BIAS;
     
     return {
         ...prediction,
         resources_requirements,
-        resources_requirements_prediction_3w
+        resources_requirements_prediction_3w,
+        available_resources,
+        available_resources_prediction_3w
     };
 }
 

@@ -71,6 +71,8 @@ export class Database {
             .db(DB)
             .collection(DISTRIBUTIONS)
             .find()
+            .sort({ timestamp: 1 })
+            .limit(1)
             .toArray();
     }
 

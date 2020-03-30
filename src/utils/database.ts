@@ -1,12 +1,12 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
 import { Predictions } from '../types/prediction';
-import { Contribution } from '../types/distribution';
+import { Distributions, Distribution } from '../types/distribution';
 import options from '../options';
 
 const DB = options.mongodb.db;
 const PREDICTIONS = options.mongodb.collection_predictions;
-const CONTRIBUTIONS = options.mongodb.collection_contributions;
+const DISTRIBUTIONS = options.mongodb.collection_distributions;
 
 export class Database {
 
@@ -66,7 +66,7 @@ export class Database {
         return lastPrediction[0];
     }
 
-    public async getContributions(): Promise<Contribution[]> {
+    public async getDistributions(): Promise<Distributions> {
         return this.connection
             .db(DB)
             .collection(CONTRIBUTIONS)
@@ -74,21 +74,21 @@ export class Database {
             .toArray();
     }
 
-    public async getContributionsByDonor(donor: string): Promise<Contribution[]> {
-        return this.connection
-            .db(DB)
-            .collection(CONTRIBUTIONS)
-            .find({ donor })
-            .toArray();
-    }
 
-    public async getContributionsByRecipient(recipient: string): Promise<Contribution[]> {
-        return this.connection
-            .db(DB)
-            .collection(CONTRIBUTIONS)
-            .find({ recipient })
-            .toArray();
-    }
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
 
     public async disconnect(): Promise<void> {
         if (this.connected) {

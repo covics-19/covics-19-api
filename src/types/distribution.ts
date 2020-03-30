@@ -1,4 +1,4 @@
-export interface Contribution {
+export interface Distribution {
   recipient: string;
   donor: string;
   cost: number;

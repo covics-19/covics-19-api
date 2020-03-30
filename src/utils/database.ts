@@ -1,7 +1,7 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
 import { Predictions } from '../types/prediction';
-import { Contribution } from '../types/contributions';
+import { Contribution } from '../types/distribution';
 import options from '../options';
 
 const DB = options.mongodb.db;

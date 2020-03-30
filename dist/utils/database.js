@@ -40,7 +40,7 @@ class Database {
                 .db(DB)
                 .collection(PREDICTIONS)
                 .find()
-                .sort({ timestamp: 1 })
+                .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
             return lastPrediction[0];
@@ -76,7 +76,7 @@ class Database {
                 .db(DB)
                 .collection(DISTRIBUTIONS)
                 .find()
-                .sort({ timestamp: 1 })
+                .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
             return lastDistributions[0];

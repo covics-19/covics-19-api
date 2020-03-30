@@ -28,7 +28,7 @@ export function parseCountryPrediction(prediction: CountryPrediction): ParsedCou
 
 export function parsePredictions(predictons: Predictions): ParsedPredictions {
     return {
-        results: predictons
+        results: predictons 
             .results
             .map(prediction => parseCountryPrediction(prediction)),
         timestamp: predictons.timestap

@@ -5,7 +5,8 @@ import { Contribution } from '../types/contributions';
 import options from '../options';
 
 const DB = options.mongodb.db;
-const COLLECTION = options.mongodb.collection;
+const PREDICTIONS = options.mongodb.collection_predictions;
+const CONTRIBUTIONS = options.mongodb.collection_contributions;
 
 export class Database {
 
@@ -34,7 +35,7 @@ export class Database {
     public async getLastPrediction(): Promise<Predictions> {
         const lastPrediction = await this.connection
             .db(DB)
-            .collection(COLLECTION)
+            .collection(PREDICTIONS)
             .find()
             .sort({ timestamp: 1 })
             .limit(1)
@@ -45,7 +46,7 @@ export class Database {
     public async getCountryPrediction(country: string): Promise<Predictions> {
         const lastPrediction = await this.connection
             .db(DB)
-            .collection(COLLECTION)
+            .collection(PREDICTIONS)
             .aggregate([
                 {
                     $project: {
@@ -68,7 +69,7 @@ export class Database {
     public async getContributions(): Promise<Contribution[]> {
         return this.connection
             .db(DB)
-            .collection(COLLECTION)
+            .collection(CONTRIBUTIONS)
             .find()
             .toArray();
     }

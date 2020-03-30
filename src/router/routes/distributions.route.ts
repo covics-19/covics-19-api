@@ -8,5 +8,16 @@ export function addRoute(router: Router, database: Database): void {
         const distributions = await database.getLastDistributions();
         res.send(distributions);
     });
+
+    router.get('/distributions/donor/:donor', async (req, res) => {
+        const donor = req.params.donor;
+        const distributions = await database.getLastDistributions();
+        res.send(distributions);
+    });
+
+    router.get('/distributions/recipient/:recipient', async (_req, res) => {
+        const distributions = await database.getLastDistributions();
+        res.send(distributions);
+    });
     
 }

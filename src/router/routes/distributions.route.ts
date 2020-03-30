@@ -4,10 +4,9 @@ import { Database } from '../../utils/database';
 
 export function addRoute(router: Router, database: Database): void {
 
-    router.get('/predictions', async (_req, res) => {
-        const predictions = await database.getLastPrediction();
-        const parsedPredictions = parsePredictions(predictions);
-        res.send(parsedPredictions);
+    router.get('/distributions', async (_req, res) => {
+        const distributions = await database.getLastDistributions();
+        res.send(distributions);
     });
     
 }

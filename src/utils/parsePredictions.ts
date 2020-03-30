@@ -6,7 +6,7 @@ import {
 } from '../types/prediction';
 
 const BIAS = 20;
-
+ 
 export function parseCountryPrediction(prediction: CountryPrediction): ParsedCountryPrediction {
     const resources_requirements = 
         (prediction.confirmed - prediction.deaths - prediction.recovered) / BIAS;

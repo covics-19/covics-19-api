@@ -65,6 +65,14 @@ export class Database {
         return lastPrediction[0];
     }
 
+    public async getContributions(): Promise<Contribution[]> {
+        return this.connection
+            .db(DB)
+            .collection(COLLECTION)
+            .find()
+            .toArray();
+    }
+
     public async disconnect(): Promise<void> {
         if (this.connected) {
             await this.connection.close();

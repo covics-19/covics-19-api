@@ -66,14 +66,15 @@ export class Database {
         return lastPrediction[0];
     }
 
-    public async getDistributions(): Promise<Distributions> {
-        return this.connection
+    public async getLastDistributions(): Promise<Distributions> {
+        const lastDistributions = await this.connection
             .db(DB)
             .collection(DISTRIBUTIONS)
             .find()
             .sort({ timestamp: 1 })
             .limit(1)
             .toArray();
+        return lastDistributions[0];
     }
 
 

@@ -100,6 +100,29 @@ export class Database {
         return lastDistributions[0];
     }
 
+    public async getDistributionsByRecipient(recipient: string): Promise<Predictions> {
+        const lastDistributions = await this.connection
+            .db(DB)
+            .collection(DISTRIBUTIONS)
+            .aggregate([
+                {
+                    $project: {
+                        distributions: {
+                            $filter: {
+                                input: '$distributions',
+                                cond: { $eq: ['$$this.recipient', recipient ] }
+                            }
+                        },
+                        timestamp: 1
+                    }
+                }
+            ])
+            .sort({ timestamp: -1 })
+            .limit(1)
+            .toArray();
+        return lastDistributions[0];
+    }
+
 
 
 

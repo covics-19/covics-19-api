@@ -7,7 +7,7 @@ import {
 
 export function parseCountryPrediction(prediction: CountryPrediction): ParsedCountryPrediction {
     const resources_prediction_3w = 
-        prediction.resources_capacity - (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / 20;
+        prediction.resources_capacity - (prediction.confirmed_prediction_3w - prediction.deaths_prediction_3w - prediction.recovered_prediction_3w) / 5;
     
     return {
         ...prediction,

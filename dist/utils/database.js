@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongodb_1 = require("mongodb");
 const options_1 = require("../options");
 const DB = options_1.default.mongodb.db;
-const COLLECTION = options_1.default.mongodb.collection;
+const PREDICTIONS = options_1.default.mongodb.collection_predictions;
+const DISTRIBUTIONS = options_1.default.mongodb.collection_distributions;
 class Database {
     constructor(uri, options = {}) {
         this.connection = null;
@@ -37,7 +38,7 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             const lastPrediction = yield this.connection
                 .db(DB)
-                .collection(COLLECTION)
+                .collection(PREDICTIONS)
                 .find()
                 .sort({ timestamp: 1 })
                 .limit(1)
@@ -49,7 +50,7 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             const lastPrediction = yield this.connection
                 .db(DB)
-                .collection(COLLECTION)
+                .collection(PREDICTIONS)
                 .aggregate([
                 {
                     $project: {
@@ -67,6 +68,18 @@ class Database {
                 .limit(1)
                 .toArray();
             return lastPrediction[0];
+        });
+    }
+    getLastDistributions() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const lastDistributions = yield this.connection
+                .db(DB)
+                .collection(DISTRIBUTIONS)
+                .find()
+                .sort({ timestamp: 1 })
+                .limit(1)
+                .toArray();
+            return lastDistributions[0];
         });
     }
     disconnect() {

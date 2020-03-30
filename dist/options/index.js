@@ -7,6 +7,7 @@ exports.default = {
     mongodb: {
         uri: process.env.DB_URI || 'mongodb://localhost:27017',
         db: 'covics-19',
-        collection: 'predictions'
+        collection_predictions: 'predictions',
+        collection_distributions: 'distributions'
     }
 };

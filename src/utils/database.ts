@@ -69,7 +69,7 @@ export class Database {
     public async getDistributions(): Promise<Distributions> {
         return this.connection
             .db(DB)
-            .collection(CONTRIBUTIONS)
+            .collection(DISTRIBUTIONS)
             .find()
             .toArray();
     }

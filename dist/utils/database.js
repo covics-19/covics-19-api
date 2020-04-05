@@ -36,6 +36,7 @@ class Database {
     }
     getLastPrediction() {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.connect();
             const lastPrediction = yield this.connection
                 .db(DB)
                 .collection(PREDICTIONS)
@@ -43,11 +44,13 @@ class Database {
                 .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
+            yield this.disconnect();
             return lastPrediction[0];
         });
     }
     getCountryPrediction(country) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.connect();
             const lastPrediction = yield this.connection
                 .db(DB)
                 .collection(PREDICTIONS)
@@ -67,11 +70,13 @@ class Database {
                 .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
+            yield this.disconnect();
             return lastPrediction[0];
         });
     }
     getLastDistributions() {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.connect();
             const lastDistributions = yield this.connection
                 .db(DB)
                 .collection(DISTRIBUTIONS)
@@ -79,11 +84,13 @@ class Database {
                 .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
+            yield this.disconnect();
             return lastDistributions[0];
         });
     }
     getDistributionsByDonor(donor) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.connect();
             const lastDistributions = yield this.connection
                 .db(DB)
                 .collection(DISTRIBUTIONS)
@@ -103,11 +110,13 @@ class Database {
                 .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
+            yield this.disconnect();
             return lastDistributions[0];
         });
     }
     getDistributionsByRecipient(recipient) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.connect();
             const lastDistributions = yield this.connection
                 .db(DB)
                 .collection(DISTRIBUTIONS)
@@ -127,6 +136,7 @@ class Database {
                 .sort({ timestamp: -1 })
                 .limit(1)
                 .toArray();
+            yield this.disconnect();
             return lastDistributions[0];
         });
     }

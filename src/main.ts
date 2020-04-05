@@ -10,7 +10,7 @@ import router from './router';
 import options from './options';
 import httpsRedirect from './utils/httpsRedirect';
 
-async function main() {
+function main() {
 
     const PORT = options.server.port;
     const URI = options.mongodb.uri;
@@ -28,8 +28,6 @@ async function main() {
     app.use(bodyParser.json());
     
     const database = new Database(URI);
-    await database.connect();
-
     app.use('', router(database));
     
     app.listen(PORT, () => {

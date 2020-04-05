@@ -33,6 +33,8 @@ export class Database {
     }
 
     public async getLastPrediction(): Promise<Predictions> {
+        await this.connect();
+
         const lastPrediction = await this.connection
             .db(DB)
             .collection(PREDICTIONS)
@@ -40,10 +42,14 @@ export class Database {
             .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
+
+        await this.disconnect();
         return lastPrediction[0];
     }
 
     public async getCountryPrediction(country: string): Promise<Predictions> {
+        await this.connect();
+
         const lastPrediction = await this.connection
             .db(DB)
             .collection(PREDICTIONS)
@@ -63,10 +69,14 @@ export class Database {
             .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
+
+        await this.disconnect();    
         return lastPrediction[0];
     }
 
     public async getLastDistributions(): Promise<Distributions> {
+        await this.connect();
+
         const lastDistributions = await this.connection
             .db(DB)
             .collection(DISTRIBUTIONS)
@@ -74,10 +84,14 @@ export class Database {
             .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
+
+        await this.disconnect();
         return lastDistributions[0];
     }
 
     public async getDistributionsByDonor(donor: string): Promise<Predictions> {
+        await this.connect();
+
         const lastDistributions = await this.connection
             .db(DB)
             .collection(DISTRIBUTIONS)
@@ -97,10 +111,14 @@ export class Database {
             .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
+
+        await this.disconnect();
         return lastDistributions[0];
     }
 
     public async getDistributionsByRecipient(recipient: string): Promise<Predictions> {
+        await this.connect();
+
         const lastDistributions = await this.connection
             .db(DB)
             .collection(DISTRIBUTIONS)
@@ -120,6 +138,8 @@ export class Database {
             .sort({ timestamp: -1 })
             .limit(1)
             .toArray();
+
+        await this.disconnect();
         return lastDistributions[0];
     }
 

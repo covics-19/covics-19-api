@@ -11,18 +11,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 function addRoute(router, database) {
     router.get('/distributions', (_req, res) => __awaiter(this, void 0, void 0, function* () {
-        const distributions = yield database.getLastDistributions();
-        res.send(distributions);
+        try {
+            const distributions = yield database.getLastDistributions();
+            res.send(distributions);
+        }
+        catch (error) {
+            res.status(500).send({ message: 'Error in /distributions', error });
+        }
     }));
     router.get('/distributions/donor/:donor', (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const donor = req.params.donor;
-        const distributions = yield database.getDistributionsByDonor(donor);
-        res.send(distributions);
+        try {
+            const donor = req.params.donor;
+            const distributions = yield database.getDistributionsByDonor(donor);
+            res.send(distributions);
+        }
+        catch (error) {
+            res.status(500).send({ message: 'Error in /distributions/donor/:donor', error });
+        }
     }));
     router.get('/distributions/recipient/:recipient', (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const recipient = req.params.recipient;
-        const distributions = yield database.getDistributionsByRecipient(recipient);
-        res.send(distributions);
+        try {
+            const recipient = req.params.recipient;
+            const distributions = yield database.getDistributionsByRecipient(recipient);
+            res.send(distributions);
+        }
+        catch (error) {
+            res.status(500).send({ message: 'Error in /distributions/recipient/:recipient', error });
+        }
     }));
 }
 exports.addRoute = addRoute;

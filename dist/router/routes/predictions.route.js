@@ -12,14 +12,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const parsePredictions_1 = require("../../utils/parsePredictions");
 function addRoute(router, database) {
     router.get('/predictions', (_req, res) => __awaiter(this, void 0, void 0, function* () {
-        const predictions = yield database.getLastPrediction();
-        const parsedPredictions = parsePredictions_1.parsePredictions(predictions);
-        res.send(parsedPredictions);
+        try {
+            const predictions = yield database.getLastPrediction();
+            const parsedPredictions = parsePredictions_1.parsePredictions(predictions);
+            res.send(parsedPredictions);
+        }
+        catch (error) {
+            res.status(500).send({ message: 'Error in /predictions', error });
+        }
     }));
     router.get('/predictions/:country', (req, res) => __awaiter(this, void 0, void 0, function* () {
-        const prediction = yield database.getCountryPrediction(req.params.country);
-        const parsedPredictions = parsePredictions_1.parsePredictions(prediction);
-        res.send(parsedPredictions);
+        try {
+            const prediction = yield database.getCountryPrediction(req.params.country);
+            const parsedPredictions = parsePredictions_1.parsePredictions(prediction);
+            res.send(parsedPredictions);
+        }
+        catch (error) {
+            res.status(500).send({ message: 'Error in /predictions/:country', error });
+        }
     }));
 }
 exports.addRoute = addRoute;

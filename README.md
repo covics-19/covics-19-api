@@ -29,7 +29,7 @@ To host the databas I used **[Mongo Atlas](https://account.mongodb.com/account/l
 
 ## Local developement
 
-<p text-align="center">
+<p align="center">
   <img src="https://github.com/covics-team-19/backend/raw/master/docs/images/covics_backend_local.png" />
 </p>
 
@@ -47,7 +47,7 @@ When running in local, a mongodb server (mongodb) should be running and listenin
 
 ## Deployment
 
-<p text-align="center">
+<p align="center">
   <img src="https://github.com/covics-team-19/backend/raw/master/docs/images/covics_backend_production.png" />
 </p>
 

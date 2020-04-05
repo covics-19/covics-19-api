@@ -29,6 +29,10 @@ To host the databas I used **[Mongo Atlas](https://account.mongodb.com/account/l
 
 ## Local developement
 
+<p text-align="center">
+  <img src="https://github.com/covics-team-19/backend/raw/master/docs/images/covics_backend_local.png" />
+</p>
+
 To start developing the backend:
 
 * Install **NodeJS**
@@ -42,5 +46,9 @@ To start developing the backend:
 When running in local, a mongodb server (mongodb) should be running and listening (default uri is `mongodb://localhost:27017`).
 
 ## Deployment
+
+<p text-align="center">
+  <img src="https://github.com/covics-team-19/backend/raw/master/docs/images/covics_backend_production.png" />
+</p>
 
 To deploy and update the server, just **transpile** the code (`npm run transpile`) and **push** on Github.

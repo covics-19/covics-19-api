@@ -1,5 +1,5 @@
-# backend
-The backend of covics-19
+# covics-19-api
+The api of covics-19
 
 ## Project purpose
 
